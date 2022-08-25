@@ -3,7 +3,7 @@
 //  Play2Live
 //
 //  Created by Алексей on 18.08.2022.
-// добавить кнопку перехода ,енам регионов ,подсчеты изменить времени жизни ,условие если = 0 ,сделать человеский вид и иконку приложения
+
 
 import UIKit
 
@@ -186,7 +186,7 @@ class InfoPersonViewController: UIViewController {
         ])
     }
     
-    func addNextButton(){
+    func addNextButton() {
         view.addSubview(nextButton)
         NSLayoutConstraint.activate([
             nextButton.topAnchor.constraint(equalTo: continentButton.bottomAnchor, constant: 20),
