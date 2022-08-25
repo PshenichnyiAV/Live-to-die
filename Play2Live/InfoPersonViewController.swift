@@ -64,7 +64,7 @@ class InfoPersonViewController: UIViewController {
     override func viewDidLoad(){
         super.viewDidLoad()
         
-        print("hello")
+       
         addSexLabel()
         title = "Personal info"
         view.backgroundColor = .white
