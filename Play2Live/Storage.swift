@@ -12,10 +12,8 @@ class RealmStorage {
     
     func save(data: UserData) {
         
-        guard let localRealm = localRealm else {
-            return
-        }
-
+        guard let localRealm = localRealm else { return }
+        
         do {
             try localRealm.write{
                 localRealm.add(data)
@@ -39,6 +37,18 @@ class RealmStorage {
             try localRealm.write{
                 data?.goneTime = goneTime
                 data?.restTime = restTime
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    func delete() {
+        guard let localRealm = localRealm,
+        let data = localRealm.object(ofType: UserData.self, forPrimaryKey: 123)
+        else { return }
+        do {
+            try localRealm.write{
+                localRealm.delete(data)
             }
         } catch {
             print(error.localizedDescription)

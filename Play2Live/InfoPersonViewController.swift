@@ -9,6 +9,7 @@ import UIKit
 
 class InfoPersonViewController: UIViewController {
     
+    let storage = RealmStorage()
     var gender: Gender?
     var date: Date?
     var continent: Continent?
@@ -85,9 +86,10 @@ class InfoPersonViewController: UIViewController {
               let continent = continent
         else { return }
 
-        let personalInfo = PersonInfo(restTime: restTime, goneTime: goneTime, gender: gender, continent: continent)
+        let personalInfo = UserData(restTime: restTime, goneTime: goneTime, gender: gender, continent: continent)
         let rootVC = CountdownViewController()
-        rootVC.personInfo = personalInfo
+        storage.delete()
+        storage.save(data: personalInfo)
         navigationController?.pushViewController(rootVC, animated: true)
         
     }
