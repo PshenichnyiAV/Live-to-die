@@ -317,6 +317,7 @@
 				DEVELOPMENT_TEAM = 9W6X47G57A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Play2Live/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Time left";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -344,6 +345,7 @@
 				DEVELOPMENT_TEAM = 9W6X47G57A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Play2Live/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Time left";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

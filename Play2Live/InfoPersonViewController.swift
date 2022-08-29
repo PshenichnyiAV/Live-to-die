@@ -55,7 +55,7 @@ class InfoPersonViewController: UIViewController {
     
     let nextButton : UIButton = {
         let button = UIButton()
-        button.layer.cornerRadius = 20
+        button.layer.cornerRadius = 10
         button.setTitle("Next", for: .normal)
         button.backgroundColor = .black
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -234,15 +234,15 @@ class InfoPersonViewController: UIViewController {
     
 }
 
-struct PersonInfo {
-    let restTime: Int // осталось прожить
-    let goneTime: Int // прошло = age
-    let allTime: Int // все время
-    
-    init(restTime: Int, goneTime: Int, gender: Gender, continent: Continent ){
-        self.restTime = restTime
-        self.goneTime = goneTime
-        allTime = gender.avarageAge + continent.avarageContinentAge/3
-    }
-}
+//struct PersonInfo {
+//    let restTime: Int // осталось прожить
+//    let goneTime: Int // прошло = age
+//    let allTime: Int // все время
+//
+//    init(restTime: Int, goneTime: Int, gender: Gender, continent: Continent ){
+//        self.restTime = restTime
+//        self.goneTime = goneTime
+//        allTime = gender.avarageAge + continent.avarageContinentAge/3
+//    }
+//}
 

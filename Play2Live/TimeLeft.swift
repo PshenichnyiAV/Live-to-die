@@ -20,14 +20,6 @@ class TimeLeft: UIViewController {
         return label
     }()
     
-    var shapeView : UIImageView {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "elipse")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return imageView
-    }
-    
     let startButton : UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 20
@@ -40,8 +32,7 @@ class TimeLeft: UIViewController {
     
     override func viewDidLoad(){
         super.viewDidLoad()
-        
-        view.backgroundColor = .gray
+        setGradient()
         startButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         setConstraints()
         
@@ -52,23 +43,12 @@ class TimeLeft: UIViewController {
         let navVC = UINavigationController(rootViewController: rootVC)
         navVC.modalPresentationStyle = .fullScreen
         present(navVC,animated: true)
-        
     }
- 
 }
 
 extension TimeLeft {
     
     func setConstraints() {
-        
-        view.addSubview(shapeView)
-        NSLayoutConstraint.deactivate([
-            shapeView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            shapeView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            shapeView.heightAnchor.constraint(equalToConstant: 100),
-            shapeView.widthAnchor.constraint(equalToConstant: 100)
-        ])
-        
         view.addSubview(lessonLabel)
         NSLayoutConstraint.activate([
             lessonLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
@@ -84,6 +64,16 @@ extension TimeLeft {
             startButton.widthAnchor.constraint(equalToConstant: 300)
         ])
     }
+    
+    func setGradient() {
+        let layer = CAGradientLayer()
+        layer.colors = [UIColor.cyan.cgColor, UIColor.purple.cgColor]
+        layer.frame = view.bounds
+        layer.startPoint = CGPoint(x: 0, y: 0)
+        layer.endPoint = CGPoint(x: 1, y: 1)
+        view.layer.insertSublayer(layer, at: 0)
+    }
+    
 }
 
 
