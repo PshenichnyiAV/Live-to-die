@@ -7,7 +7,14 @@
 
 import RealmSwift
 
-class RealmStorage {
+protocol Storage {
+    func save(data: UserData)
+    func load() -> UserData?
+    func update(restTime: Int, goneTime: Int)
+    func delete()
+}
+
+class RealmStorage: Storage {
    private let localRealm: Realm? = try? Realm()
     
     func save(data: UserData) {

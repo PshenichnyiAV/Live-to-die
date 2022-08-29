@@ -18,7 +18,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let value = UserDefaults.standard.bool(forKey: "chek")
         let controller = value ? CountdownViewController() : TimeLeft()
-        //window.rootViewController = controller
         let window = UIWindow(windowScene: windowsScene)
         window.rootViewController = controller
         window.makeKeyAndVisible()

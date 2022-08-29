@@ -9,6 +9,13 @@ import UIKit
 
 class CountdownViewController : UIViewController {
     
+    var imageView : UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "no_eto_ne_ticnho")
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
     let storage = RealmStorage()
     
     var progressBar: SRCountdownTimer = {
@@ -21,17 +28,17 @@ class CountdownViewController : UIViewController {
         progressBar.backgroundColor = .white
         progressBar.timerFinishingText = "end"
         progressBar.useMinutesAndSecondsRepresentation = true
-      
+       
         return progressBar
     }()
     
     override func viewDidLoad(){
         super.viewDidLoad()
-        UserDefaults.standard.set(true, forKey: "chek")
-        
-        view.addSubview(progressBar)
-        progressBar.frame = CGRect(x: 50, y: 100, width: 300, height: 300)
+        checkUserDefault()
+        addConstraints()
         view.backgroundColor = .white
+      
+        
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -42,6 +49,31 @@ class CountdownViewController : UIViewController {
     func loadData() -> UserData {
         guard let data = storage.load() else { return UserData(restTime: 0, goneTime: 0, gender: .male, continent: .europe) }
        return data
+    }
+    
+    func addConstraints() {
+        view.addSubview(progressBar)
+        progressBar.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            progressBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            progressBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            progressBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            progressBar.heightAnchor.constraint(equalTo: progressBar.widthAnchor, multiplier: 1/1) // в зависимотси от экрана
+        ])
+        
+        view.addSubview(imageView)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: progressBar.bottomAnchor, constant: 20),
+            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            imageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
+        ])
+    }
+    
+    func checkUserDefault() {
+        guard !UserDefaults.standard.bool(forKey: "chek") else { return }
+        UserDefaults.standard.set(true, forKey: "chek")
     }
     
 }

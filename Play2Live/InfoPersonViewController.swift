@@ -9,7 +9,7 @@ import UIKit
 
 class InfoPersonViewController: UIViewController {
     
-    let storage = RealmStorage()
+    let storage: Storage
     var gender: Gender?
     var date: Date?
     var continent: Continent?
@@ -62,20 +62,28 @@ class InfoPersonViewController: UIViewController {
         return button
     }()
     
+    init(storage: Storage) {
+        self.storage = storage
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad(){
         super.viewDidLoad()
         
        
         addSexLabel()
-        title = "Personal info"
-        view.backgroundColor = .white
         addSexButton()
-        addDatePicker()
         addContinentLabel()
         addContinentButton()
+        addDatePicker()
         addDateOfBurthLabel()
         addNextButton()
-        
+        title = "Personal info"
+        view.backgroundColor = .white
         nextButton.addTarget(self, action: #selector(nextButtonPressed), for: .touchUpInside)
     }
     
@@ -108,7 +116,7 @@ class InfoPersonViewController: UIViewController {
         view.addSubview(dateOfBurthLabel)
         dateOfBurthLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            dateOfBurthLabel.topAnchor.constraint(equalTo: genderButton.bottomAnchor, constant: 20),
+            dateOfBurthLabel.topAnchor.constraint(equalTo: continentButton.bottomAnchor, constant: 20),
             dateOfBurthLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             dateOfBurthLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             dateOfBurthLabel.heightAnchor.constraint(equalToConstant: 50)
@@ -119,7 +127,7 @@ class InfoPersonViewController: UIViewController {
         view.addSubview(continentAreaLabel)
         continentAreaLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            continentAreaLabel.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 50),
+            continentAreaLabel.topAnchor.constraint(equalTo: genderButton.bottomAnchor, constant: 20),
             continentAreaLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             continentAreaLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             continentAreaLabel.heightAnchor.constraint(equalToConstant: 50)
@@ -166,7 +174,7 @@ class InfoPersonViewController: UIViewController {
         ])
     }
     
-    func continentButtonMenu() -> UIMenu  {
+    func continentButtonMenu() -> UIMenu {
         let items = Continent.allCases.map { continent in
             UIAction(title: continent.rawValue) { [unowned self] _ in
                 continentAreaLabel.text = "Your area: \(continent.rawValue)"
@@ -181,7 +189,7 @@ class InfoPersonViewController: UIViewController {
         view.addSubview(datePicker)
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            datePicker.topAnchor.constraint(equalTo: genderButton.bottomAnchor, constant: 20),
+            datePicker.topAnchor.constraint(equalTo: continentButton.bottomAnchor, constant: 20),
             datePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             datePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             datePicker.heightAnchor.constraint(equalToConstant: 50)
@@ -191,7 +199,7 @@ class InfoPersonViewController: UIViewController {
     func addNextButton() {
         view.addSubview(nextButton)
         NSLayoutConstraint.activate([
-            nextButton.topAnchor.constraint(equalTo: continentButton.bottomAnchor, constant: 20),
+            nextButton.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 30),
             nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             nextButton.heightAnchor.constraint(equalToConstant: 50)

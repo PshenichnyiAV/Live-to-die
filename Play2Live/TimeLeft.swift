@@ -11,7 +11,7 @@ class TimeLeft: UIViewController {
     
     let lessonLabel : UILabel = {
         let label = UILabel()
-        label.text = "Рассчитай время смерти"
+        label.text = "Find out how much you have left"
         label.font = UIFont.boldSystemFont (ofSize: 24)
         label.textColor = .black
         label.numberOfLines = 0
@@ -47,7 +47,8 @@ class TimeLeft: UIViewController {
         
     }
     @objc func buttonPressed(){
-        let rootVC = InfoPersonViewController()
+        let realmStorage = RealmStorage()
+        let rootVC = InfoPersonViewController(storage: realmStorage)
         let navVC = UINavigationController(rootViewController: rootVC)
         navVC.modalPresentationStyle = .fullScreen
         present(navVC,animated: true)
